@@ -7,11 +7,14 @@ import { Course } from '../model/course';
 })
 export class CoursesService {
 
+  private readonly API = '/assets/courses.json'
+
   constructor(private httpClient: HttpClient) { }
 
-  list(): Course[] {
-    return [{
-      _id: '1', name: 'React', category: 'Front-End'
-    }]
+  list() {
+    return this.httpClient.get<Course[]>(this.API)
+      .pipe(
+        tap(courses => console.log(courses))
+    )
   }
 }
