@@ -5,12 +5,20 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'courses' },
   {
     path: 'courses',
-    loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule)
-  }
+    loadChildren: () =>
+      import('./courses/courses.module').then((m) => m.CoursesModule),
+  },
+  {
+    path: 'error-report',
+    loadChildren: () =>
+      import('./library/form/error-report.module').then(
+        (m) => m.ErrorReportModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
